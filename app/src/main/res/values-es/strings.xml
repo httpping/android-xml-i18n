@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+
+
+
+<!--by tp add v4.4.1==start--><string name="adfasdf">* NOTA: Su pedido será enviado a Perú. Si elige Envío estándar, ingrese su número de DNI (número de tarjeta de identificación) para garantizar un procesamiento y una entrega sin problemas.</string>
+<!--by tp add v4.4.1==end-->
+<!--by tp add v4.4.1==start--><string name="abc_demo_a223">Número de impuesto requerido</string>
+<!--by tp add v4.4.1==end-->
+</resources>
