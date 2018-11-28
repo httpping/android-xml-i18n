@@ -70,7 +70,9 @@ public class XmlParseUtil {
 
 
             Comment docment = docs.createComment(tag +"==start");
-            docs.getDocumentElement().appendChild(docment);
+            if (StringUtil.isNotEmpty(tag)) {
+                docs.getDocumentElement().appendChild(docment);
+            }
 
             for (int i =1 ;i<listData.size();i++) {
                 List<String>  datas =  listData.get(i);
@@ -92,10 +94,10 @@ public class XmlParseUtil {
                 docs.getDocumentElement().appendChild(bodyElement);
             }
 
-//            NOTATION_NODE
-
-            docment = docs.createComment(tag +"==end");
-            docs.getDocumentElement().appendChild(docment);
+            if (StringUtil.isNotEmpty(tag)) {
+                docment = docs.createComment(tag + "==end");
+                docs.getDocumentElement().appendChild(docment);
+            }
 
             //保存xml文件
             TransformerFactory transformerFactory=TransformerFactory.newInstance();

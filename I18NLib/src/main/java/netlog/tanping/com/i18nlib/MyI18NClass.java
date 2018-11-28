@@ -16,7 +16,7 @@ public class MyI18NClass {
     /**
      * 资源目录 例如 ： C:\work\demo\AndroidDemos\I18NParse\app\src\main\res
      */
-    public static String rootRes ;
+    public static String rootRes  ="C:\\work\\zf\\Zaful\\app\\src\\main\\res";
 
 
     /**
@@ -32,11 +32,11 @@ public class MyI18NClass {
         if (rootRes == null){
             rootRes  = filepath + "\\app\\src\\main\\res";
         }
-        if(rootXLSX ==rootXLSX){
+        if(rootXLSX ==null){
             rootXLSX = filepath +"\\I18NLib\\xml-data.xlsx";
         }
 
-        parse("by tp add v4.4.1");
+        parse(null);
         System.out.println("ending ... ");
 
         System.out.println(filepath);
