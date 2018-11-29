@@ -72,36 +72,21 @@ public class XmlParseUtil {
             Document docs = db.parse(f);
 
 
-            Comment docment = docs.createComment(tag +"==start");
-            if (StringUtil.isNotEmpty(tag)) {
-                docs.getDocumentElement().appendChild(docment);
-            }
-
-            for (int i =1 ;i<listData.size();i++) {
-                List<String>  datas =  listData.get(i);
-                String name = datas.get(0);
-                String value = datas.get(index);
-
-                if (StringUtil.isEmpty(name) || StringUtil.isEmpty(value)){
-                    continue;
+            boolean needWrite = isNeedWrite(listData,index,docs);
+            //需要写内容
+            if (needWrite) {
+                Comment docment = docs.createComment(tag + "==start");
+                if (StringUtil.isNotEmpty(tag)) {
+                    docs.getDocumentElement().appendChild(docment);
                 }
 
-                if (isExist(docs,name,value)){
-                    continue;
+                createBody(listData, index, docs);
+
+                if (StringUtil.isNotEmpty(tag)) {
+                    docment = docs.createComment(tag + "==end");
+                    docs.getDocumentElement().appendChild(docment);
                 }
-
-                Element bodyElement = docs.createElement("string");
-                bodyElement.setAttribute("name", name);
-                Text m = docs.createTextNode(value);
-                bodyElement.appendChild(m);
-                docs.getDocumentElement().appendChild(bodyElement);
             }
-
-            if (StringUtil.isNotEmpty(tag)) {
-                docment = docs.createComment(tag + "==end");
-                docs.getDocumentElement().appendChild(docment);
-            }
-
             //保存xml文件
             TransformerFactory transformerFactory=TransformerFactory.newInstance();
             Transformer transformer=transformerFactory.newTransformer();
@@ -140,6 +125,50 @@ public class XmlParseUtil {
 
     }
 
+    private static void createBody(List<List<String>> listData, int index, Document docs) {
+        for (int i =1 ;i<listData.size();i++) {
+            List<String>  datas =  listData.get(i);
+            String name = datas.get(0);
+            String value = datas.get(index);
+
+            if (StringUtil.isEmpty(name) || StringUtil.isEmpty(value)){
+                continue;
+            }
+
+            if (isExist(docs,name,value)){
+                continue;
+            }
+
+            Element bodyElement = docs.createElement("string");
+            bodyElement.setAttribute("name", name);
+            Text m = docs.createTextNode(value);
+            bodyElement.appendChild(m);
+            docs.getDocumentElement().appendChild(bodyElement);
+        }
+    }
+
+    private static boolean isNeedWrite(List<List<String>> listData, int index, Document docs) {
+        for (int i =1 ;i<listData.size();i++) {
+            List<String>  datas =  listData.get(i);
+            String name = datas.get(0);
+            String value = datas.get(index);
+
+            if (StringUtil.isEmpty(name) || StringUtil.isEmpty(value)){
+                continue;
+            }
+
+            if (isExist(docs,name,value)){
+                continue;
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
+
+
     /**
      * 查找值是否存在
      * @param document
@@ -162,11 +191,10 @@ public class XmlParseUtil {
                     if (value.equals(kvalue)){
                         return true;
                     }else {
-                        System.out.println("Exist key:"+kname+" value no equals");
-                        System.out.println("Exist value:"+kvalue+" value no equals");
+                        System.out.println("Exist key === :"+kname+" value no equals");
+                        System.out.println("Exist value === :"+kvalue+"");
                         return true;
                     }
-
 
                 }
 

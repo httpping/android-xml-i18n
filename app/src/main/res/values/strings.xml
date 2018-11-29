@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <resources>
     <string name="app_name">I18NParse</string>
-
-
     <!--by tp add v4.4.1==start-->
     <string name="adfasdf">* NOTE: Your order will be sent to Peru. If you choose Standard Shipping, please fill in your DNI number (ID card number) to enable a smooth clearance and delivery.</string>
     <!--by tp add v4.4.1==end-->
-<!--by tp add v4.4.1==start--><string name="abc_demo_a223">Tax number required</string>
-<!--by tp add v4.4.1==end-->
+    <!--by tp add v4.4.1==start-->
+    <string name="abc_demo_a223">Tax number required</string>
+    <!--by tp add v4.4.1==end-->
+    <string name="order_detail_count_down_remind">Remaining Payment Time:</string>
 </resources>

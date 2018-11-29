@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-
-
+<?xml version="1.0" encoding="UTF-8"?>
+<resources tools:ignore="MissingTranslation" xmlns:tools="http://schemas.android.com/tools">
     <!--by tp add v4.4.1==start-->
     <!--by tp add v4.4.1==end-->
     <!--by tp add v4.4.1==start-->
     <string name="adfasdf">* NOTE: Votre commande sera envoyée au Pérou. Si vous choisissez la livraison standard, veuillez entrer votre numéro DNI (numéro de carte d\'identité) pour permettre un dédouanement et une livraison en toute tranquillité.</string>
     <string name="abc_demo_a223">Numéro de taxe requis</string>
     <!--by tp add v4.4.1==end-->
+    <string name="order_detail_count_down_remind">Délai de paiement restant :</string>
 </resources>
