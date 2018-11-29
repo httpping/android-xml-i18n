@@ -24,17 +24,22 @@ package netlog.tanping.com.i18nlib.util;
 
 */
 
+import com.sun.org.apache.xml.internal.serialize.OutputFormat;
+import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
+
 import org.w3c.dom.Comment;
 import org.w3c.dom.Document;
-import org.w3c.dom.DocumentFragment;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Text;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.util.LinkedList;
+import java.io.FileWriter;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -44,8 +49,6 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-
-import netlog.tanping.com.i18nlib.util.StringUtil;
 
 /**
  * 项目名称: z
@@ -104,13 +107,32 @@ public class XmlParseUtil {
             Transformer transformer=transformerFactory.newTransformer();
             DOMSource domSource=new DOMSource(docs);
 
+            OutputFormat format = new OutputFormat(docs);
+            format.setEncoding("UTF-8");
+            format.setIndent(2);
+            format.setIndenting(true);
+
             //设置编码类型
             transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
-            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.setOutputProperty(OutputKeys.INDENT, "no");
+            transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+
             StreamResult result=new StreamResult(new FileOutputStream(f));
 
+
             //把DOM树转换为xml文件
-            transformer.transform(domSource, result);
+//            transformer.transform(domSource, result);
+
+            Writer out = new StringWriter();
+            XMLSerializer serializer = new XMLSerializer(out, format);
+            serializer.serialize(docs);
+            String resultstr = out.toString();
+
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(f));
+            bufferedWriter.write(resultstr);
+            bufferedWriter.flush();
+            bufferedWriter.close();
+//            System.out.println(resultstr);
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

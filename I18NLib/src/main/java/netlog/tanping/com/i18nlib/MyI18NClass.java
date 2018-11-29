@@ -16,7 +16,7 @@ public class MyI18NClass {
     /**
      * 资源目录 例如 ： C:\work\demo\AndroidDemos\I18NParse\app\src\main\res
      */
-    public static String rootRes  ="C:\\work\\zf\\Zaful\\app\\src\\main\\res";
+    public static String rootRes ="C:\\work\\zf\\Zaful\\app\\src\\main\\res";
 
 
     /**
